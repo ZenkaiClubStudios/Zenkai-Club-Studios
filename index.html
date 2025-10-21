@@ -315,16 +315,16 @@
 const dataModel = {
   name: "Tai Long",
   logoPath: "https://i.imgur.com/5Z7SpAw.png",
-  kiDimensional: 12,
+  kiDimensional: 0,
   kiDemonio: 0,
   kiPurgatorio: 0,
   kiVacio: {
-    active: false, // Cambia a true para activar el Ki de Vacío
+    active: true, // Cambia a true para activar el Ki de Vacío
     carga: 80,
     nivelDestruccion: 7
   },
   magia: {
-  active: true, // Cambia a false para desactivar la Magia
+  active: false, // Cambia a false para desactivar la Magia
   control: 70, // Control de Magia (0-100)
   tipo: "constante" // "constante" o "destructiva"
   },
@@ -1468,3 +1468,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 </body>
 </html>
+

@@ -600,7 +600,6 @@
   background: rgba(0,0,0,0.4);
   border: 1px solid rgba(0,255,255,0.2);
   border-radius: 10px;
-  max-width: 380px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   display: none;
   position: relative;
@@ -609,6 +608,240 @@
 .ki-comparison-chart.show {
   display: block;
   animation: slideIn 0.5s ease-out;
+}
+
+/* Contenedor principal con las barras y los cuadros informativos */
+.ki-comparison-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Caja de las barras de Ki */
+.ki-comparison-bars-box {
+  flex-shrink: 0;
+  width: 280px;
+}
+
+/* Panel de información lateral */
+.ki-info-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Cuadro de dependencia de Ki */
+.ki-dependency-box {
+  background: rgba(0,0,0,0.35);
+  border: 2px solid rgba(0,255,255,0.2);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ki-dependency-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,255,255,0.05), rgba(255,0,255,0.05));
+  pointer-events: none;
+}
+
+.ki-dependency-title {
+  font-size: 13px;
+  color: rgba(180,220,255,0.85);
+  margin-bottom: 8px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ki-dependency-text {
+  font-size: 15px;
+  color: rgba(200,220,255,0.95);
+  line-height: 1.6;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+}
+
+.ki-type-highlight {
+  font-weight: 800;
+  font-size: 16px;
+  text-shadow: 0 0 12px currentColor;
+  display: inline-block;
+  animation: kiTypePulse 2s ease-in-out infinite;
+}
+
+@keyframes kiTypePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.ki-type-demon { color: #ff3333; }
+.ki-type-purgatory { color: #96c8ff; }
+.ki-type-void { color: #ff8c00; }
+.ki-type-dimensional { color: #ffeb3b; }
+.ki-type-magic { color: #ff69b4; }
+.ki-type-pure { color: #fff8dc; }
+.ki-type-pure-maligno { color: #ff4444; }
+.ki-type-pure-purgatory { color: #a7d8ff; }
+.ki-type-base { color: #00ffff; }
+
+.ki-description-text {
+  font-size: 11px;
+  color: rgba(180,200,220,0.8);
+  margin-top: 8px;
+  line-height: 1.4;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cuadro de nivel de amenaza */
+.ki-threat-box {
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  border: 2px solid;
+}
+
+.ki-threat-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ki-threat-text {
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Nivel Estable */
+.ki-threat-stable {
+  background: rgba(0,100,50,0.3);
+  border-color: rgba(0,255,100,0.4);
+}
+
+.ki-threat-stable::before {
+  background: linear-gradient(135deg, rgba(0,255,100,0.08), rgba(0,200,100,0.08));
+}
+
+.ki-threat-stable .ki-threat-text {
+  color: #66ff99;
+}
+
+/* Nivel Moderado */
+.ki-threat-moderate {
+  background: rgba(100,80,0,0.3);
+  border-color: rgba(255,200,0,0.4);
+  animation: moderatePulse 2.5s ease-in-out infinite;
+}
+
+.ki-threat-moderate::before {
+  background: linear-gradient(135deg, rgba(255,200,0,0.1), rgba(255,150,0,0.1));
+}
+
+.ki-threat-moderate .ki-threat-text {
+  color: #ffcc44;
+}
+
+@keyframes moderatePulse {
+  0%, 100% { 
+    box-shadow: 0 0 15px rgba(255,200,0,0.3);
+    border-color: rgba(255,200,0,0.4);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(255,200,0,0.5);
+    border-color: rgba(255,200,0,0.6);
+  }
+}
+
+/* Nivel Peligroso */
+.ki-threat-dangerous {
+  background: rgba(100,0,0,0.4);
+  border-color: rgba(255,50,50,0.5);
+  animation: dangerPulse 2s ease-in-out infinite;
+}
+
+.ki-threat-dangerous::before {
+  background: linear-gradient(135deg, rgba(255,0,0,0.15), rgba(255,100,0,0.15));
+}
+
+.ki-threat-dangerous .ki-threat-text {
+  color: #ff4444;
+}
+
+@keyframes dangerPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255,0,0,0.4);
+    border-color: rgba(255,50,50,0.5);
+  }
+  50% { 
+    box-shadow: 0 0 35px rgba(255,0,0,0.7);
+    border-color: rgba(255,50,50,0.8);
+  }
+}
+
+/* Nivel Crítico */
+.ki-threat-critical {
+  background: rgba(100,0,50,0.5);
+  border-color: rgba(255,0,128,0.7);
+  animation: criticalPulse 1.5s ease-in-out infinite;
+}
+
+.ki-threat-critical::before {
+  background: linear-gradient(135deg, rgba(255,0,128,0.2), rgba(200,0,100,0.2));
+}
+
+.ki-threat-critical .ki-threat-text {
+  color: #ff0080;
+}
+
+@keyframes criticalPulse {
+  0%, 100% { 
+    box-shadow: 0 0 25px rgba(255,0,128,0.6), 0 0 40px rgba(255,0,255,0.4);
+    border-color: rgba(255,0,128,0.7);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255,0,128,0.9), 0 0 60px rgba(255,0,255,0.6);
+    border-color: rgba(255,0,128,1);
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 768px) {
+  .ki-comparison-container {
+    flex-direction: column;
+  }
+  
+  .ki-comparison-bars-box {
+    width: 100%;
+  }
+  
+  .ki-info-panels {
+    width: 100%;
+  }
 }
 
 .ki-chart-title {
@@ -828,54 +1061,224 @@
 </div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// ███████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ ██╗   ██╗██████╗  █████╗  ██████╗██╗ ██████╗ ███╗   ██╗
+// ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║
+// ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗██║   ██║██████╔╝███████║██║     ██║██║   ██║██╔██╗ ██║
+// ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║██║   ██║██╔══██╗██╔══██║██║     ██║██║   ██║██║╚██╗██║
+// ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝╚██████╔╝██║  ██║██║  ██║╚██████╗██║╚██████╔╝██║ ╚████║
+//  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+// ═══════════════════════════════════════════════════════════════════════════════
+
 const dataModel = {
-  name: "Agathion",
-  logoPath: "https://i.imgur.com/5Z7SpAw.png",
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 📋 INFORMACIÓN BÁSICA DEL PERSONAJE
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  
+  name: "Agathion",                        // Nombre del personaje
+  logoPath: "https://i.imgur.com/5Z7SpAw.png", // URL del logo/avatar
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 📊 ESTADÍSTICAS BASE
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Formato: [Nombre, Valor]
+  // Valores recomendados: 0-100 (pueden superar 100 con boosts)
+  
+  stats: [
+    ["Fuerza", 35],        // Poder físico y capacidad de combate cuerpo a cuerpo
+    ["Velocidad", 32],     // Velocidad de movimiento y reacción
+    ["Stamina", 34],       // Resistencia y aguante en combate prolongado
+    ["Potencial", 21],     // Capacidad de crecimiento y poder latente
+    ["Precisión", 64],     // Exactitud en ataques y habilidades
+    ["Durabilidad", 11],   // Resistencia a daño físico
+    ["Inteligencia", 57]   // Capacidad cognitiva y estratégica
+  ],
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ⚡ KI DIMENSIONAL (悪, Waru)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Esencia que envuelve el Multiverso. Solo accesible por Guardianes o seres
+  // con contacto directo con el Multiverso.
+  // 
+  // Valores: 0-100%
+  // - Menor a 5%: Sin efecto
+  // - 5-30%: Boost moderado
+  // - 31-70%: Boost alto
+  // - 71-100%: Boost extremo (nivel dimensional)
+  
   kiDimensional: 10,
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 🔥 KI DE DEMONIO (悪, Waru)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Ki prestigioso otorgado a los demonios al nacer o a través de tratos.
+  // Contraparte del Ki Dimensional que rige la naturaleza del Multiverso.
+  // 
+  // EFECTOS:
+  // - Aumenta Fuerza, Velocidad, Potencial y Durabilidad
+  // - REDUCE Inteligencia (corrupción mental)
+  // 
+  // RANGOS:
+  // - Menor a 60%: Mortal con Ki de Demonio
+  // - 60-85%: Demonio del Infierno
+  // - 86-92%: Demonio Noble del Infierno
+  // - 93-100%: Realeza del Infierno (Control de Almas)
+  
   kiDemonio: 0,
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 🔷 KI DEL PURGATORIO
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Ki de Demonio purificado por la felicidad. Los habitantes del Purgatorio
+  // lo dominan sin los efectos negativos del Ki de Demonio.
+  // 
+  // EFECTOS:
+  // - Aumenta Fuerza, Velocidad, Precisión e Inteligencia
+  // - NO reduce Inteligencia (a diferencia del Ki de Demonio)
+  // - Otorga serenidad y lucidez
+  // 
+  // RANGOS:
+  // - Menor a 60%: Portador Afligido
+  // - 60-85%: Demonio del Purgatorio
+  // - 86-92%: Noble del Purgatorio
+  // - 93-100%: Realeza del Purgatorio (Control de Almas)
+  
   kiPurgatorio: 0,
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ⚫ KI DE VACÍO (夜, Yoru)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Consecuencia de absorber energía residual tras la destrucción de una dimensión.
+  // Denso como un agujero negro. REEMPLAZA todos los demás tipos de Ki.
+  // 
+  // MECÁNICA:
+  // - La carga se drena constantemente (necesitas destruir para recargar)
+  // - Nivel 7+ regenera automáticamente al 90-100%
+  // - DEVORA el Ki Dimensional y otros tipos de Ki
+  
   kiVacio: {
-    active: false, // Cambia a true para activar el Ki de Vacío
-    carga: 80,
-    nivelDestruccion: 7
+    active: false,          // true = Activa el Ki de Vacío (REEMPLAZA otros Ki)
+    carga: 80,              // Carga actual (0-100%)
+    nivelDestruccion: 7     // Nivel de destrucción (1-10)
+                            // 1-3: Iniciado del Vacío
+                            // 4-6: Destructor Planetario
+                            // 7-9: Aniquilador Dimensional
+                            // 10: Devorador del Multiverso
   },
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ✨ SISTEMA DE MAGIA
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Imitación del Ki Dimensional creada por antiguos profetas.
+  // Permite manipular materia y espacio, pero EXPONE al usuario al Ki Dimensional.
+  // 
+  // TIPOS:
+  // - "constante": Forma común y segura (uso moderado de Ki Dimensional)
+  // - "destructiva": Extremadamente poderosa pero MORTAL (uso alto de Ki Dimensional)
+  // 
+  // CONTROL:
+  // - 0-40%: Riesgo CRÍTICO de muerte
+  // - 41-70%: Riesgo ALTO
+  // - 71-100%: Riesgo MODERADO
+  // 
+  // EFECTO: Solo aumenta POTENCIAL (no afecta otras stats)
+  
   magia: {
-  active: true, // Cambia a false para desactivar la Magia
-  control: 83, // Control de Magia (0-100)
-  tipo: "constante" // "constante" o "destructiva"
+    active: true,           // true = Sistema de Magia activado
+    control: 83,            // Control de Magia (0-100%)
+    tipo: "constante"       // "constante" o "destructiva"
   },
+  
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 🎋 KI ESPIRITUAL (死, Shi)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Habilidad de los espíritus. Copia las estadísticas de un objetivo.
+  // 
+  // TIPOS:
+  // 1. "normal": Copia EXACTA del objetivo
+  // 2. "anexion": SUPERA al objetivo (+15-30%)
+  // 3. "entidad": La Entidad (ser sin vida ni alma)
+  // 
+  // IMPORTANTE:
+  // - Stats físicos se muestran como "??" si no hay objetivo
+  // - Inteligencia siempre visible (propia del espíritu)
+  // - VULNERABLE al Ki Dimensional (puede destruir la esencia del espíritu)
+  
   kiEspiritual: {
-  active: false, // Cambia a true para activar Ki Espiritual
-  tipo: "normal", // "normal", "anexion", "entidad"
-  
-  // Sistema de copia de objetivo
-  objetivo: {
-    active: true, // ¿Está copiando a alguien actualmente?
-    nombre: "Tai Long",
-    stats: [58, 59, 65, 70, 63, 64] // [Fuerza, Velocidad, Stamina, Potencial, Precisión, Durabilidad]
+    active: false,          // true = Activa el Ki Espiritual
+    tipo: "normal",         // "normal", "anexion", "entidad"
+    
+    // ─────────────────────────────────────────────────────────────────────────
+    // Sistema de Copia de Objetivo (Normal y Anexión)
+    // ─────────────────────────────────────────────────────────────────────────
+    objetivo: {
+      active: true,         // true = Está copiando a alguien actualmente
+      nombre: "Tai Long",   // Nombre del objetivo
+      stats: [58, 59, 65, 70, 63, 64] // [Fuerza, Vel, Stamina, Potencial, Prec, Dura]
+    },
+    
+    // ─────────────────────────────────────────────────────────────────────────
+    // Configuración para Anexión
+    // ─────────────────────────────────────────────────────────────────────────
+    anexion: {
+      boostPercentage: 20   // % de mejora sobre el objetivo (15-30% recomendado)
+    },
+    
+    // ─────────────────────────────────────────────────────────────────────────
+    // Configuración para La Entidad
+    // ─────────────────────────────────────────────────────────────────────────
+    // Ser incompleto sin vida ni alma. Habilidades únicas:
+    // - Regeneración, Clonación, Creación de Armas, Distorsión Espacial
+    entidad: {
+      cristalesActivos: false,        // Cristales dimensionales activados
+      controlMental: 75,              // Control mental (0-100%)
+      toleranciaKiDimensional: 25,    // % de Ki Dimensional que tolera
+      corrupcionMental: 30            // % de corrupción que AUMENTA inteligencia
+    }
   },
   
-  // Configuración para Anexión
-  anexion: {
-    boostPercentage: 20 // Porcentaje de mejora sobre el objetivo (15-30% recomendado)
-  },
   
-  // Configuración para La Entidad
-  entidad: {
-    cristalesActivos: false,
-    controlMental: 75, // 0-100
-    toleranciaKiDimensional: 25, // % que puede tolerar sin morir
-    corrupcionMental: 30 // % de corrupción que AUMENTA la inteligencia
-  }
-  },
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ✨ KI PURO (ユ, Yu)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Ki de la raza angelical. Solo perceptible por quienes tienen corazón puro.
+  // Brilla como luz blanca y poco densa.
+  // 
+  // TIPOS:
+  // 1. "normal": Ki Puro del Cielo (requiere pureza de corazón)
+  // 2. "purgatorio": Ki Puro nacido de la felicidad (más resplandeciente)
+  // 3. "maligno": Ki Puro corrompido (regalo de La Presentadora)
+  // 
+  // RANGOS (normal y purgatorio):
+  // - "angel": Ángel común (pureza 71-90%)
+  // - "arcangel": Guerrero y mandatario celestial
+  //   · Pureza <51%: Arcángel
+  //   · Pureza 51-80%: Arcángel Puro
+  //   · Pureza 81-100%: Consejo Celestial/Purgatorio (Control de Almas)
+  // 
+  // KI PURO MALIGNO:
+  // - A mayor corrupción, más agresivo e inestable
+  // - Reduce Inteligencia pero aumenta poder físico
+  
   kiPuro: {
-  active: false, // Cambia a true para activar Ki Puro
-  tipo: "normal", // "normal", "purgatorio", "maligno"
-  rango: "angel", // "angel" o "arcangel" (solo para normal y purgatorio)
-  pureza: 50, // 0-100 (solo para normal, indica qué tan puro es el corazón)
-  corrupcion: 25 // 0-100 (solo para maligno, nivel de corrupción)
-  },
-  stats: [["Fuerza", 35], ["Velocidad", 32], ["Stamina", 34], ["Potencial", 21], ["Precisión", 64], ["Durabilidad", 11], ["Inteligencia", 57]]
+    active: false,          // true = Activa el Ki Puro
+    tipo: "normal",         // "normal", "purgatorio", "maligno"
+    rango: "angel",         // "angel" o "arcangel" (solo para normal y purgatorio)
+    pureza: 50,             // 0-100% (solo normal/purgatorio - pureza del corazón)
+    corrupcion: 25          // 0-100% (solo maligno - nivel de corrupción)
+  }
+  
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // FIN DE CONFIGURACIÓN
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 };
 
 let chartInstance = null;
@@ -1581,7 +1984,9 @@ function updateKiComparisonChart() {
                    dataModel.kiPurgatorio >= 5 || 
                    hasPure;
   
-  let chartHTML = '<div class="ki-chart-title">Comparativa de Ki</div>';
+  let chartHTML = '<div class="ki-comparison-container">';
+  chartHTML += '<div class="ki-comparison-bars-box">';
+  chartHTML += '<div class="ki-chart-title">Comparativa de Ki</div>';
   chartHTML += '<div class="ki-bars-container">';
   
   // Si NO hay ningún Ki activo, mostrar solo Base
@@ -1705,6 +2110,226 @@ function updateKiComparisonChart() {
   }
   
   chartHTML += '</div>'; // Cierra ki-bars-container
+  chartHTML += '</div>'; // Cierra ki-comparison-bars-box
+  
+  // ========== CUADROS INFORMATIVOS ==========
+  chartHTML += '<div class="ki-info-panels">';
+  
+  // Determinar cuál Ki es el dominante
+  const kiValues = [];
+  
+  // Verificar si es un mago (magia activa + Ki Dimensional)
+  const isMage = dataModel.magia && dataModel.magia.active && dataModel.kiDimensional >= 5;
+  
+  // Estado Base (si no hay otros Ki activos o tienen valores bajos)
+  let baseValue = 0;
+  if(dataModel.kiDimensional < 5 && dataModel.kiDemonio < 5 && dataModel.kiPurgatorio < 5 && 
+     (!dataModel.kiVacio || !dataModel.kiVacio.active) && 
+     (!dataModel.kiPuro || !dataModel.kiPuro.active) &&
+     (!dataModel.magia || !dataModel.magia.active)) {
+    baseValue = 100; // Completamente base
+  }
+  kiValues.push({ type: 'base', value: baseValue, name: 'Estado Base' });
+  
+  // Ki Dimensional / Magia (si es mago, tiene prioridad)
+  if(isMage) {
+    // Calcular valor combinado: Ki Dimensional + factor de control de magia
+    const magicFactor = dataModel.magia.control / 100; // 0 a 1
+    const combinedValue = dataModel.kiDimensional * (1 + magicFactor * 0.5); // Boost por control
+    kiValues.push({ 
+      type: 'magic', 
+      value: combinedValue, 
+      name: 'Ki Dimensional/Magia',
+      isMage: true,
+      magicControl: dataModel.magia.control,
+      magicType: dataModel.magia.tipo
+    });
+  } else if(dataModel.kiDimensional >= 5) {
+    kiValues.push({ type: 'dimensional', value: dataModel.kiDimensional, name: 'Ki Dimensional' });
+  }
+  
+  // Ki de Demonio
+  if(dataModel.kiDemonio >= 5) {
+    kiValues.push({ type: 'demon', value: dataModel.kiDemonio, name: 'Ki de Demonio' });
+  }
+  
+  // Ki del Purgatorio
+  if(dataModel.kiPurgatorio >= 5) {
+    kiValues.push({ type: 'purgatory', value: dataModel.kiPurgatorio, name: 'Ki del Purgatorio' });
+  }
+  
+  // Ki de Vacío
+  if(dataModel.kiVacio && dataModel.kiVacio.active) {
+    kiValues.push({ type: 'void', value: dataModel.kiVacio.carga, name: 'Ki de Vacío' });
+  }
+  
+  // Ki Puro
+  if(dataModel.kiPuro && dataModel.kiPuro.active) {
+    let pureValue = 80; // Valor base alto para Ki Puro
+    if(dataModel.kiPuro.tipo === "normal") {
+      pureValue = dataModel.kiPuro.pureza;
+    } else if(dataModel.kiPuro.tipo === "maligno") {
+      pureValue = dataModel.kiPuro.corrupcion;
+    }
+    kiValues.push({ 
+      type: dataModel.kiPuro.tipo === "maligno" ? 'pure-maligno' : 
+            dataModel.kiPuro.tipo === "purgatorio" ? 'pure-purgatory' : 'pure',
+      value: pureValue, 
+      name: dataModel.kiPuro.tipo === "maligno" ? 'Ki Puro Maligno' : 
+            dataModel.kiPuro.tipo === "purgatorio" ? 'Ki Puro del Purgatorio' : 'Ki Puro'
+    });
+  }
+  
+  // Encontrar el Ki dominante
+  let dominantKi = kiValues[0];
+  for(let i = 1; i < kiValues.length; i++) {
+    if(kiValues[i].value > dominantKi.value) {
+      dominantKi = kiValues[i];
+    }
+  }
+  
+  // Descripciones de los tipos de Ki
+  const kiDescriptions = {
+    'base': 'Un usuario sin Ki especial, dependiendo únicamente de sus habilidades naturales y entrenamiento físico.',
+    'dimensional': 'Esencia que envuelve todo el Multiverso. Solo accesible por Guardianes o seres con contacto directo con el Multiverso.',
+    'magic': 'Una imitación del Ki Dimensional creada por antiguos profetas. Permite manipular la materia y el espacio a cierta escala, pero expone al usuario al Ki Dimensional.',
+    'demon': 'Ki prestigioso otorgado a los demonios al nacer o a través de tratos. Una contraparte del Ki Dimensional que rige la naturaleza del Multiverso.',
+    'purgatory': 'Ki de Demonio purificado por la felicidad. Los habitantes del Purgatorio lo dominan sin los efectos negativos del Ki de Demonio.',
+    'void': 'Consecuencia de absorber energía residual tras la destrucción de una dimensión. Denso como un agujero negro.',
+    'pure': 'Ki de la raza angelical. Solo se percibe por aquellos con corazón bueno y puro. Brilla como luz blanca y poco densa.',
+    'pure-maligno': 'Ki Puro corrompido por tristeza, rencor o venganza. Un regalo de La Presentadora que vuelve al portador agresivo e inestable.',
+    'pure-purgatory': 'Ki Puro nacido de la felicidad. Más resplandeciente que el Ki Puro normal.'
+  };
+  
+  // Colores para cada tipo
+  const kiColors = {
+    'base': 'ki-type-base',
+    'dimensional': 'ki-type-dimensional',
+    'magic': 'ki-type-magic',
+    'demon': 'ki-type-demon',
+    'purgatory': 'ki-type-purgatory',
+    'void': 'ki-type-void',
+    'pure': 'ki-type-pure',
+    'pure-maligno': 'ki-type-pure-maligno',
+    'pure-purgatory': 'ki-type-pure-purgatory'
+  };
+  
+  // Cuadro de dependencia
+  chartHTML += '<div class="ki-dependency-box">';
+  chartHTML += '<div class="ki-dependency-title">Dependencia de Energía</div>';
+  chartHTML += '<div class="ki-dependency-text">Esta persona depende más de su <span class="ki-type-highlight ' + kiColors[dominantKi.type] + '">' + dominantKi.name + '</span></div>';
+  
+  // Descripción especial para magos
+  let description = kiDescriptions[dominantKi.type];
+  if(dominantKi.isMage) {
+    const controlLevel = dominantKi.magicControl;
+    const magicTypeText = dominantKi.magicType === "destructiva" ? "Destructiva" : "Constante";
+    description += ' <strong>Tipo:</strong> Magia ' + magicTypeText + '. <strong>Control:</strong> ' + controlLevel + '%.';
+    
+    if(dominantKi.magicType === "destructiva") {
+      description += ' ⚠ Alta exposición al Ki Dimensional, daña al usuario.';
+    }
+  }
+  
+  chartHTML += '<div class="ki-description-text">' + description + '</div>';
+  chartHTML += '</div>';
+  
+  // Calcular nivel de amenaza basado en los valores de Ki
+  let threatLevel = 'stable';
+  let threatText = '✓ Estable';
+  
+  // CÁLCULO ESPECIAL PARA MAGOS
+  if(dominantKi.isMage) {
+    const control = dominantKi.magicControl;
+    const kiDim = dataModel.kiDimensional;
+    const isDestructive = dominantKi.magicType === "destructiva";
+    
+    // Magia Destructiva es inherentemente más peligrosa
+    if(isDestructive) {
+      if(control < 40) {
+        // Magia destructiva con bajo control = CRÍTICO (peligro para todos, incluso para sí mismo)
+        threatLevel = 'critical';
+        threatText = '☠ CRÍTICO - Autodestructivo';
+      } else if(control < 70) {
+        // Magia destructiva con control medio = PELIGROSO
+        threatLevel = 'dangerous';
+        threatText = '⚠ PELIGROSO - Volátil';
+      } else {
+        // Magia destructiva con alto control = PELIGROSO (letal pero controlado)
+        threatLevel = 'dangerous';
+        threatText = '⚠ PELIGROSO - Letal Controlado';
+      }
+      
+      // Si además tiene mucho Ki Dimensional, aumenta la amenaza
+      if(kiDim >= 70 && control >= 70) {
+        threatLevel = 'critical';
+        threatText = '☠ CRÍTICO - Maestro Destructivo';
+      }
+    } else {
+      // Magia Constante (más segura)
+      if(control < 30) {
+        // Control muy bajo = MODERADO (inestable)
+        threatLevel = 'moderate';
+        threatText = '⚡ MODERADO - Inestable';
+      } else if(control < 60) {
+        // Control medio-bajo = MODERADO
+        threatLevel = 'moderate';
+        threatText = '⚡ MODERADO';
+      } else if(kiDim >= 70 && control >= 70) {
+        // Alto Ki Dimensional + alto control = PELIGROSO
+        threatLevel = 'dangerous';
+        threatText = '⚠ PELIGROSO - Mago Experto';
+      } else if(kiDim >= 50 && control >= 80) {
+        // Control maestro = MODERADO a PELIGROSO
+        threatLevel = 'moderate';
+        threatText = '⚡ MODERADO - Controlado';
+      } else {
+        // Todo lo demás = ESTABLE
+        threatLevel = 'stable';
+        threatText = '✓ Estable';
+      }
+    }
+  } else {
+    // Cálculo normal para no-magos
+    // Calcular el valor máximo de Ki
+    let maxKiValue = 0;
+    for(let ki of kiValues) {
+      if(ki.type !== 'base' && ki.value > maxKiValue) {
+        maxKiValue = ki.value;
+      }
+    }
+    
+    // Calcular boosts totales
+    const totalBoosts = (dataModel.kiDimensional >= 5 ? calculateKiBoost(dataModel.kiDimensional, dataModel.magia) : 0) +
+                        (dataModel.kiDemonio >= 5 ? calculateDemonBoost(dataModel.kiDemonio) : 0) +
+                        (dataModel.kiPurgatorio >= 5 ? calculatePurgatoryBoost(dataModel.kiPurgatorio) : 0);
+    
+    // Determinar nivel de amenaza
+    if(maxKiValue >= 80 || totalBoosts >= 100) {
+      threatLevel = 'critical';
+      threatText = '☠ CRÍTICO';
+    } else if(maxKiValue >= 70 || totalBoosts >= 70) {
+      threatLevel = 'dangerous';
+      threatText = '⚠ PELIGROSO';
+    } else if(maxKiValue >= 40 || totalBoosts >= 40) {
+      threatLevel = 'moderate';
+      threatText = '⚡ MODERADO';
+    }
+    
+    // Nivel de amenaza especial para Ki de Vacío
+    if(dataModel.kiVacio && dataModel.kiVacio.active && dataModel.kiVacio.carga > 70) {
+      threatLevel = 'critical';
+      threatText = '☠ CRÍTICO';
+    }
+  }
+  
+  // Cuadro de amenaza
+  chartHTML += '<div class="ki-threat-box ki-threat-' + threatLevel + '">';
+  chartHTML += '<div class="ki-threat-text">' + threatText + '</div>';
+  chartHTML += '</div>';
+  
+  chartHTML += '</div>'; // Cierra ki-info-panels
+  chartHTML += '</div>'; // Cierra ki-comparison-container
   
   chartBox.innerHTML = chartHTML;
   chartBox.classList.add('show');
@@ -2741,6 +3366,69 @@ function updateChart(hasVoid, kiBoost, demonBoost, purgBoost, voidBoost, pureBoo
         pointHoverRadius: 7,
         tension: 0.28,
         borderDash: [6, 3]
+      });
+    }
+    
+    // ========== KI MÁGICO: Buffea SOLO el Potencial ==========
+    if(dataModel.magia && dataModel.magia.active){
+      // Calcular valores con el boost de magia aplicado
+      const magicBoostedValues = dataModel.stats.map((s) => {
+        let val = s[1];
+        
+        // Aplicar magia (solo afecta Potencial)
+        val = applyMagicBoost(val, s[0], dataModel.magia);
+        
+        // Aplicar otros boosts en el orden correcto
+        if(s[0] !== "Inteligencia" && kiBoost > 0){
+          val = applyKiBoost(val, kiBoost, s[0]);
+        }
+        
+        if(s[0] === "Inteligencia" && demonBoost > 0){
+          val = applyDemonDebuff(val, dataModel.kiDemonio);
+        } else if(demonBoost > 0){
+          val = applyDemonBoost(val, demonBoost, s[0]);
+        }
+        
+        if(purgBoost > 0){
+          val = applyPurgatoryBoost(val, purgBoost, s[0]);
+        }
+        
+        if(pureBoost > 0){
+          if(s[0] === "Inteligencia"){
+            const pureEffect = getPureCognitiveEffect(dataModel.kiPuro, val);
+            if(pureEffect.loss){
+              val -= pureEffect.loss;
+            } else if(pureEffect.gain){
+              val += pureEffect.gain;
+            }
+          } else {
+            val = applyPureKiBoost(val, pureBoost, s[0], dataModel.kiPuro);
+          }
+        }
+        
+        return val;
+      });
+      
+      // Crear gradiente rosa/magenta para la magia
+      const gMagic = ctx.createLinearGradient(0, 0, 380, 380);
+      gMagic.addColorStop(0, 'rgba(255,0,255,0.25)');
+      gMagic.addColorStop(0.5, 'rgba(255,100,255,0.3)');
+      gMagic.addColorStop(1, 'rgba(255,0,200,0.2)');
+      
+      datasets.push({
+        label: 'Ki Mágico',
+        data: magicBoostedValues,
+        backgroundColor: gMagic,
+        borderColor: 'rgba(255,0,255,0.85)',
+        borderWidth: 3,
+        pointBackgroundColor: 'rgba(255,100,255,1)',
+        pointBorderColor: 'rgba(255,200,255,1)',
+        pointBorderWidth: 2,
+        pointHoverRadius: 8,
+        pointRadius: 5,
+        tension: 0.28,
+        borderDash: [10, 5], // Línea punteada
+        fill: true // Relleno activado
       });
     }
   }
